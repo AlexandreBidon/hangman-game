@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from web_service.objects.guess_model import Guess
 from web_service.objects.word_model import Word
-from web_service.objects.word_list import WorldList
+from web_service.objects.word_list import WordList
+from web_service.objects.setup_model import Setup
 from web_service.core.game_engine import GameEngine
 
 
@@ -13,12 +14,12 @@ class APISetup():
 
     def __init__(self):
         self.app = FastAPI()
-        self.word_list = WorldList()
-        self.game_engine = GameEngine()
+        self.word_list = WordList()
+        self.game_engine = GameEngine(self.word_list)
 
         @self.app.post("/setup")
-        async def root():
-            return {"message": "Hello World"}
+        async def create_game(setup: Setup):
+            self.game_engine.new_game(setup)
 
         @self.app.post("/guess")
         async def make_guess(guess: Guess):

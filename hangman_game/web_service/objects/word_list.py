@@ -2,7 +2,7 @@
 from hangman_game.web_service.objects.word_model import Word
 
 
-class WorldList():
+class WordList():
 
     def __init__(self):
         self.list = []
