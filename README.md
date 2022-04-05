@@ -5,7 +5,7 @@
 ## How to start
 
 ### Dependencies
-First, make sure to install the dependencies using `pip install -r requirements.txt`.
+First, make sure to install the dependencies for the server using `pip install -r requirements.txt`.
 
 ### Run the project
 
