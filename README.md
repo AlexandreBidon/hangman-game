@@ -20,6 +20,23 @@ You can use the file `info.log` to debug.
 
 You can setup a new game using the POST endpoint `/setup`. You will have to provide a JSON file with the parameters of the game. For now the only parameter is max_error. This endpoint will send back the id of the game.
 
+You can setup a game like this :
+
+```json
+{
+    "max_error": 10
+}
+```
+### Play a game
+
+You can then use this id to play this specific game. You can guess a letter with the POST endpoint `/id/guess` with id being the id of your game.
+You can send a guess like this :
+
+```json
+{
+  "letter" : "a"
+}
+```
 ## TODO
 
 Add some tests
