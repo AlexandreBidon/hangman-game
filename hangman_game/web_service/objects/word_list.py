@@ -1,5 +1,5 @@
 
-from hangman_game.web_service.objects.word_model import Word
+from web_service.objects.word_model import Word
 
 
 class WordList():
