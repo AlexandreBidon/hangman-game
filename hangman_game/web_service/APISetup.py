@@ -4,6 +4,7 @@ from web_service.objects.word_model import Word
 from web_service.objects.word_list import WordList
 from web_service.objects.setup_model import Setup
 from web_service.core.game_engine import GameEngine
+import uuid
 
 
 class APISetup():
@@ -15,15 +16,17 @@ class APISetup():
     def __init__(self):
         self.app = FastAPI()
         self.word_list = WordList()
-        self.game_engine = GameEngine(self.word_list)
+        self.game_engine_dict = {}
 
         @self.app.post("/setup")
         async def create_game(setup: Setup):
-            self.game_engine.new_game(setup)
+            id = str(uuid.uuid4().hex)
+            self.game_engine_dict[id] = GameEngine(self.word_list, id)
+            self.game_engine_dict[id].new_game(setup)
 
-        @self.app.post("/guess")
-        async def make_guess(guess: Guess):
-            self.game_engine.make_guess(guess)
+        @self.app.post("{id}}/guess")
+        async def make_guess(guess: Guess, id: str):
+            self.game_engine_dict[id].make_guess(guess)
 
         @self.app.get("/mots")
         async def word_list():
