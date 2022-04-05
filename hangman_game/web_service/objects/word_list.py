@@ -1,4 +1,3 @@
-
 from web_service.objects.word_model import Word
 
 
