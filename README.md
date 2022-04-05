@@ -51,6 +51,7 @@ The server will respond with informations on the game. The answer will look like
 
 You can try to guess the word by making a new guess after each response.
 
+![](https://raw.githubusercontent.com/AlexandreBidon/Funky-Horse/main/out/line.png)
 ## TODO
 
 - Add some tests
