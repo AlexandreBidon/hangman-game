@@ -53,7 +53,7 @@ You can try to guess the word by making a new guess after each response.
 
 ## TODO
 
--Add some tests
+- Add some tests
 - Create a client side interface
 - Add an authentification system for players
 - Add a game cleaner after inactivity
