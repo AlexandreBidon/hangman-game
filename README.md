@@ -37,6 +37,20 @@ You can send a guess like this :
   "letter" : "a"
 }
 ```
+
+The server will respond with informations on the game. The answer will look like this :
+
+```json
+{
+	"status": "playing",
+	"word": "p__me",
+	"errors": 2,
+    "letters tried" : ["p","m","e","a","b"]
+}
+```
+
+You can try to guess the word by making a new guess after each response.
+
 ## TODO
 
 Add some tests

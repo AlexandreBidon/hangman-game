@@ -17,6 +17,7 @@ class GameEngine():
         self.error = 0
         self.word_list = word_list
         self.guessed_letters = []
+        self.tried_letters = []
         self.current_word = "_"
         self.id = id
 
@@ -31,12 +32,14 @@ class GameEngine():
         except:
             raise HTTPException(status_code=400, detail="Word List is empty")
         self.guessed_letters = []
+        self.tried_letters = []
         logging.info("New game created with the word {word} and {max_error} max errors.".format(
             word=self.word, max_error=self.max_error))
         return({"id": self.id})
 
     def make_guess(self, guess: Guess):
         guessed_letter = guess.dict()["letter"]
+        self.tried_letters.append(guessed_letter)
         logging.info("Player tried the letter {}".format(guessed_letter))
         if guessed_letter in self.word:
             self.guessed_letters.append(guessed_letter)
@@ -48,12 +51,12 @@ class GameEngine():
                     current_word += "_"
             self.current_word = current_word
             if self.current_word == self.word:
-                return({"status": "win", "word": self.current_word, "errors": self.error})
+                return({"status": "win", "word": self.current_word, "errors": self.error, "letters tried": self.tried_letters})
             else:
-                return({"status": "playing", "word": self.current_word, "errors": self.error})
+                return({"status": "playing", "word": self.current_word, "errors": self.error, "letters tried": self.tried_letters})
         else:
             self.error += 1
             if self.error > self.max_error:
-                return({"status": "game failed, setup new game", "word": self.word, "errors": self.error})
+                return({"status": "game failed, setup new game", "word": self.word, "errors": self.error, "letters tried": self.tried_letters})
             else:
-                return({"status": "playing", "word": self.current_word, "errors": self.error})
+                return({"status": "playing", "word": self.current_word, "errors": self.error, "letters tried": self.tried_letters})

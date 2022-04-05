@@ -4,3 +4,5 @@ requests-toolbelt==0.9.1
 uvicorn==0.15.0
 fastapi==0.70.0 
 random
+json
+uuid
