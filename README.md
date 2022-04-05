@@ -27,6 +27,14 @@ You can setup a game like this :
     "max_error": 10
 }
 ```
+The server will send you the id of your game like this :
+
+```json
+{
+	"id": "5b51cb692ec74e78925e0998a7153285"
+}
+```
+
 ### Play a game
 
 You can then use this id to play this specific game. You can guess a letter with the POST endpoint `/id/guess` with id being the id of your game.
